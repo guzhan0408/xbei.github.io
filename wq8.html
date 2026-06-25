@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>武器库8.0</title>
+<style>
+.container { width: 500px; margin: 0 auto; border: 2px solid #333; padding: 20px; text-align: center; }
+.weapon-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; text-align: left; }
+.important { color: red; font-weight: bold; }
+button { margin: 5px; padding: 5px 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>武器对象</h1>
+<div id="weapons8"></div>
+<button onclick="addWeapon8()">添加武器</button>
+</div>
+
+<script>
+let weapons8 = [
+{ title:"191步枪", content:"口径5.8mm，重约3.5kg，有效射程800米", important: true },
+{ title:"东风17", content:"射程2500公里，10马赫滑翔突防。", important: false }
+];
+function showWeapons8(){
+let html = "";
+for(let i=0;i<weapons8.length;i++){
+let n = weapons8[i];
+let cls = n.important ? "important" : "";
+html += `<div class="weapon-item">`;
+html += `<h3 class="${cls}">${n.title}</h3>`;
+html += `<p>${n.content}</p>`;
+html += `<button onclick="toggleImportant8(${i})">切换重要</button>`;
+html += `</div>`;
+}
+document.getElementById('weapons8').innerHTML = html;
+}
+function toggleImportant8(index){
+weapons8[index].important = !weapons8[index].important;
+showWeapons8();
+}
+function addWeapon8(){
+let weaponTitle = prompt("新武器的名字：");
+let weaponContent = prompt("新武器的描述：");
+weapons8.push({ title: weaponTitle, content: weaponContent, important: false });
+showWeapons8();
+}
+showWeapons8();
+</script>
+</body>
+</html>
